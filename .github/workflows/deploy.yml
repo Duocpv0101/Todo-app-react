@@ -7,8 +7,11 @@ on:
       - duocpv
 jobs:
   # To build the project
-  build-tambola:
+  build-todoapp:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checking out code
         uses: actions/checkout@v3
