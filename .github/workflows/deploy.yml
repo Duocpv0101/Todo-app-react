@@ -24,9 +24,10 @@ jobs:
       - name: Building project
         run: npm run build
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::255561998135:role/S3toGithub
+          role-duration-seconds: 900
           aws-region: ap-northeast-1
 
       - name: Deploy to S3 bucket
