@@ -1,0 +1,30 @@
+# Name of workflow as seen in Github actions tab
+name: dev-build-and-deploy
+# Run workflow only on push to dev branch
+on:
+  push:
+    branches:
+      - duocpv
+jobs:
+  # To build the project
+  build-tambola:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v3
+      - name: Installing Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Installing dependencies
+        run: npm install
+      - name: Building project
+        run: npm run build
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::255561998135:role/S3toGithub
+          aws-region: us-west-1
+
+      - name: Deploy to S3 bucket
+        run: aws s3 sync build s3://duocpv-react-todolist --delete
