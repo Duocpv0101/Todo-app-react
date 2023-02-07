@@ -26,9 +26,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: $role_arn
+          role-to-assume: $ROLE_ARN
           role-duration-seconds: 900
-          aws-region: $region
+          aws-region: $REGION
 
       - name: Deploy to S3 bucket
-        run: aws s3 sync build s3://$bucket_name --delete
+        run: aws s3 sync build s3://$BUCKET_NAME --delete
