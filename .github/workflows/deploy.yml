@@ -28,7 +28,7 @@ jobs:
         with:
           role-to-assume: $ROLE_ARN
           role-duration-seconds: 900
-          aws-region: $REGION
+          aws-region: $NAME_REGION
 
       - name: Deploy to S3 bucket
         run: aws s3 sync build s3://$BUCKET_NAME --delete
