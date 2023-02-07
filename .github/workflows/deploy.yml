@@ -26,7 +26,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${ROLE_ARN}
+          role-to-assume: ${{vars.ROLE_ARN}}
           role-duration-seconds: 900
           aws-region: ap-northeast-1
 
